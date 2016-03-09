@@ -4,7 +4,7 @@
 
     <groupId>com.basistech</groupId>
     <artifactId>auto-version-maven-extension-test</artifactId>
-    <version>${rev}</version>
+    <version>${version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
