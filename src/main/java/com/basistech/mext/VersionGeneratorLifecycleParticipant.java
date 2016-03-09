@@ -24,10 +24,8 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,6 +53,7 @@ public class VersionGeneratorLifecycleParticipant extends AbstractMavenLifecycle
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
             String timestamp = format.format(new Date());
             String rev = template.replace("${timestamp}", timestamp);
+            LOG.info("rev {}", rev);
             session.getUserProperties().put("rev", rev);
         }
     }
