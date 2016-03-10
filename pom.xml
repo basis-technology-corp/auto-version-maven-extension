@@ -12,6 +12,21 @@
 
   <name>auto-version-maven-extension</name>
 
+  <description>An extension, intended for use with Maven > 3.3.9, that set a property for use in the version.
+ </description>
+  <scm>
+    <connection>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</connection>
+    <developerConnection>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <distributionManagement>
+    <site>
+      <id>site</id>
+      <url>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</url>
+    </site>
+  </distributionManagement>
+  <url>http://basis-technology-corp.github.io/auto-version-maven-extension</url>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
