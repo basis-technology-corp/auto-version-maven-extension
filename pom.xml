@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -8,16 +7,16 @@
     <version>0.1.2</version>
   </parent>
   <artifactId>auto-version-maven-extension</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
 
   <name>auto-version-maven-extension</name>
 
-  <description>An extension, intended for use with Maven > 3.3.9, that set a property for use in the version.
+  <description>An extension, intended for use with Maven &gt; 3.3.9, that set a property for use in the version.
  </description>
   <scm>
     <connection>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</connection>
     <developerConnection>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>auto-version-maven-extension-0.0.1</tag>
   </scm>
   <distributionManagement>
     <site>
