@@ -7,7 +7,7 @@
     <version>0.1.2</version>
   </parent>
   <artifactId>auto-version-maven-extension</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
 
   <name>auto-version-maven-extension</name>
 
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</connection>
     <developerConnection>scm:git:git@github.com:basis-technology-corp/auto-version-maven-extension.git</developerConnection>
-    <tag>auto-version-maven-extension-0.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
   <distributionManagement>
     <site>
