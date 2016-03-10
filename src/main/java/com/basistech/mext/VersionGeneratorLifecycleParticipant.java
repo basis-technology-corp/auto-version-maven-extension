@@ -39,7 +39,6 @@ public class VersionGeneratorLifecycleParticipant extends AbstractMavenLifecycle
 
     @Override
     public void afterSessionStart(MavenSession session) throws MavenExecutionException {
-        LOG.info("begin");
         File projectBase = new File(session.getRequest().getBaseDirectory());
         File policyFile = new File(projectBase, "version-policy.txt");
         if (policyFile.exists()) {
@@ -50,11 +49,15 @@ public class VersionGeneratorLifecycleParticipant extends AbstractMavenLifecycle
                 throw new MavenExecutionException("Failed to read " + policyFile.getAbsolutePath(), e);
             }
 
+            String[] bits = template.split("=");
+            String prop = bits[0];
+            String valueTemplate = bits[1];
+
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
             String timestamp = format.format(new Date());
-            String rev = template.replace("${timestamp}", timestamp);
-            LOG.info("version {}", rev);
-            session.getUserProperties().put("version", rev);
+            String rev = valueTemplate.replace("${timestamp}", timestamp);
+            LOG.info("Setting {} to {}", prop, rev);
+            session.getUserProperties().put(prop, rev);
         }
     }
 
