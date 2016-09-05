@@ -12,7 +12,7 @@
  revision=${timestamp}
  ```
  
- VALUE can contain `${timestamp}`. Then declare this extension in `.mvn/extensions.xml` as follows:
+ VALUE can contain `${timestamp}` or `${commit}`. Then declare this extension in `.mvn/extensions.xml` as follows:
  
  ```
  <?xml version="1.0" encoding="UTF-8"?>
