@@ -6,7 +6,7 @@
      PROPERTY=VALUE
  
  
- VALUE can contain `${timestamp}`. For example:
+ VALUE can contain `${timestamp}` or `${commit}`. For example:
 
  
      revision=${timestamp}

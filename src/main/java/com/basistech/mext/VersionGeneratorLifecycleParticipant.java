@@ -20,6 +20,10 @@ import org.apache.maven.AbstractMavenLifecycleParticipant;
 import org.apache.maven.MavenExecutionException;
 import org.apache.maven.execution.MavenSession;
 import org.codehaus.plexus.component.annotations.Component;
+import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,12 +59,38 @@ public class VersionGeneratorLifecycleParticipant extends AbstractMavenLifecycle
             String prop = bits[0];
             String valueTemplate = bits[1];
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-            String timestamp = format.format(new Date());
-            String rev = valueTemplate.replace("${timestamp}", timestamp);
+            String rev = valueTemplate;
+            if (valueTemplate.contains("${timestamp}")) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+                String timestamp = format.format(new Date());
+                rev = rev.replace("${timestamp}", timestamp);
+            }
+            if (valueTemplate.contains("${commit}")) {
+                try {
+                    rev = rev.replace("${commit}", commitHash(projectBase));
+                } catch (IOException e) {
+                    throw new MavenExecutionException("Unable to obtain git commit for " + projectBase.getAbsolutePath(), e);
+                }
+            }
             LOG.info("Setting {} to {}", prop, rev);
             session.getUserProperties().put(prop, rev);
         }
+    }
+
+    private String commitHash(File projectBase) throws IOException {
+        File canonicalRepo = projectBase.getCanonicalFile();
+        FileRepository repo = new FileRepositoryBuilder().findGitDir(canonicalRepo).build();
+        try {
+            // extract HEAD revision
+            ObjectId revisionObject = repo.resolve(Constants.HEAD);
+            if (null == revisionObject) {
+                throw new IOException("Cannot read current revision from repository: " + repo);
+            }
+            return revisionObject.name();
+        } finally {
+            repo.close();
+        }
+
     }
 
     private String fileContents(File file) throws IOException {
